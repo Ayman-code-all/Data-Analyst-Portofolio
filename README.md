@@ -14,7 +14,6 @@ Compute stickiness ratio (DAU/MAU) to evaluate how often monthly users engage da
 Measure monetization metrics like ARPU (Average Revenue Per User) and ARPPU (Average Revenue Per Paying User).
 Identify high-value users (“whales”) contributing disproportionately to revenue.
 Conduct A/B test analysis to assess feature effectiveness.
-Perform cohort analysis to track behavior and revenue trends of players grouped by their install month.
 
 Tools & Techniques
 
