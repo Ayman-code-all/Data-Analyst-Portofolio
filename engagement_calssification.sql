@@ -1,4 +1,5 @@
 -- Daily Active Users
+
 SELECT session_date, COUNT(DISTINCT player_id) AS DAU
 FROM game_sessions
 WHERE session_date BETWEEN DATE_SUB('2024-03-20', INTERVAL 30 DAY) AND '2024-03-20'
@@ -6,17 +7,20 @@ GROUP BY session_date
 ORDER BY session_date;
 
 -- Weekly Active Users
+
 SELECT '2024-03-20' AS end_date,
 COUNT(DISTINCT player_id) AS WAU
 FROM game_sessions
 WHERE session_date BETWEEN DATE_SUB('2024-03-20', INTERVAL 7 DAY) AND '2024-03-20';
 
 -- Monthly Active Users
+
 SELECT COUNT(DISTINCT player_id) AS MAU
 FROM game_sessions
 WHERE session_date BETWEEN DATE_SUB('2024-03-20', INTERVAL 30 DAY) AND '2024-03-20';
 
 -- Stickiness Ratio
+
 WITH daily_active_users AS (
 	SELECT session_date, COUNT(DISTINCT player_id) AS DAU
 	FROM game_sessions
@@ -32,6 +36,7 @@ SELECT ROUND(AVG(DAU) / (SELECT MAU FROM monthly_active_users), 2) AS Stickiness
 FROM daily_active_users;
 
 -- High Engagement Players
+
 SELECT player_id AS High_Engagement_players_id, COUNT(DISTINCT session_date) AS sessions_counts
 FROM game_sessions
 WHERE session_date BETWEEN DATE_SUB('2024-03-20', INTERVAL 60 DAY) AND '2024-03-20'
@@ -39,6 +44,7 @@ GROUP BY player_id
 HAVING sessions_counts >= 10;
 
 -- Player classification (Whales, Paying, Casual, etc.)
+
 WITH player_engagement AS (
 	SELECT player_id, COUNT(DISTINCT session_date) AS sessions_count
 	FROM game_sessions
